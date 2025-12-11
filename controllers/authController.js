@@ -5,7 +5,6 @@ class AuthController {
     try {
       const { username, password } = req.body;
 
-      // Validar que se enviaron credenciales
       if (!username || !password) {
         return res.status(400).json({
           success: false,
@@ -18,7 +17,6 @@ class AuthController {
         tienda: "tienda456",
       };
 
-      // Verificar credenciales
       if (validUsers[username] !== password) {
         return res.status(401).json({
           success: false,
@@ -26,7 +24,6 @@ class AuthController {
         });
       }
 
-      // Generar token JWT
       const token = generateToken({
         username,
         role: username === "admin" ? "admin" : "user",
